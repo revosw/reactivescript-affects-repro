@@ -1,0 +1,44 @@
+// solidjs/reactivescript#50. `rows` is a keyed client layer over the server's answer (async.md, "three
+// layers"). The action guesses the row, declares `affects rows` so `pending? rows` is true while it saves,
+// saves, and re-asks the day. AC-5: `affects x` "declares that work now in flight will change x".
+import pure { load } from "./api"
+import { save, note } from "./api"
+
+export default component App() {
+  source tick: number := 0
+  day = await load(tick)
+  source rows key id = day.rows
+  source err: string := "none"
+
+  action move() {
+    try {
+      let i = rows.findIndex(r => r.id == "a")
+      let next = rows[i].at + 1
+      optimistic rows[i].at := next
+      note(`action: guessed a@${next}, now: affects rows`)
+      affects rows
+      note("action: affects rows returned, now: await save")
+      await save("a", next)
+      refresh day
+    } catch (e) {
+      note(`action: catch: ${e.message}`)
+      err := e.message
+    }
+  }
+
+  errored fallback(e) { <p class="err">error: {e.message}</p> } {
+    loading fallback { <p>loading…</p> } {
+      <table>
+        <thead><tr><th>row</th><th>at</th></tr></thead>
+        <tbody>{for r in rows { <tr><td>{r.id}</td><td id="at">{r.at}</td></tr> }}</tbody>
+      </table>
+      <button id="move" onClick={() => { move() }}>Move row a (+1)</button>
+      <dl class="facts">
+        <dt>pending? rows</dt>
+        <dd id="pending" class={pending? rows ? "yes" : "no"}>{pending? rows ? "true" : "false"}</dd>
+        <dt>error caught by the action</dt>
+        <dd id="err" class={err == "none" ? "no" : "err"}>{err}</dd>
+      </dl>
+    }
+  }
+}

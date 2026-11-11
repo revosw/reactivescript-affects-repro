@@ -1,0 +1,6 @@
+// What the .rx program imports from ./api (spec/09 MO-8). The functions are in src/api.ts.
+export type Row = { id: string; at: number }
+export type Day = { rows: Row[] }
+export pure fn load(tick: number): Promise<Day>
+export fn save(id: string, at: number): Promise<void>
+export fn note(text: string): void

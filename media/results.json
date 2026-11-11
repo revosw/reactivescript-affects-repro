@@ -1,0 +1,121 @@
+{
+	"browser": "chromium 157.0.8103.50",
+	"variants": {
+		"dev-bug": {
+			"before": {
+				"at": "1",
+				"pending": "false",
+				"error": "none",
+				"saveCalled": false
+			},
+			"during": {
+				"at": "1",
+				"pending": "false",
+				"error": "[INVALID_AFFECTS_TARGET] affects() expects a Solid source accessor or a store. Pass the store proxy (optionally with a property key) or the original accessor, not a wrapper function or an already-read value.",
+				"saveCalled": false
+			},
+			"after": {
+				"at": "1",
+				"pending": "false",
+				"error": "[INVALID_AFFECTS_TARGET] affects() expects a Solid source accessor or a store. Pass the store proxy (optionally with a property key) or the original accessor, not a wrapper function or an already-read value.",
+				"saveCalled": false
+			},
+			"log": [
+				"0.00s  load(0) called",
+				"0.30s  load(0) answered: a@1",
+				"1.58s  action: guessed a@2, now: affects rows",
+				"1.59s  action: catch: [INVALID_AFFECTS_TARGET] affects() expects a Solid source accessor or a store. Pass the store proxy (optionally with a property key) or the original accessor, not a wrapper function or an already-read value."
+			]
+		},
+		"dev-fixed": {
+			"before": {
+				"at": "1",
+				"pending": "false",
+				"error": "none",
+				"saveCalled": false
+			},
+			"during": {
+				"at": "2",
+				"pending": "true",
+				"error": "none",
+				"saveCalled": true
+			},
+			"after": {
+				"at": "2",
+				"pending": "false",
+				"error": "none",
+				"saveCalled": true
+			},
+			"log": [
+				"0.00s  load(0) called",
+				"0.30s  load(0) answered: a@1",
+				"1.57s  action: guessed a@2, now: affects rows",
+				"1.57s  action: affects rows returned, now: await save",
+				"1.57s  save(a, 2) called",
+				"3.07s  save(a, 2) answered",
+				"3.07s  load(0) called",
+				"3.37s  load(0) answered: a@2"
+			]
+		},
+		"prod-bug": {
+			"before": {
+				"at": "1",
+				"pending": "false",
+				"error": "none",
+				"saveCalled": false
+			},
+			"during": {
+				"at": "2",
+				"pending": "false",
+				"error": "none",
+				"saveCalled": true
+			},
+			"after": {
+				"at": "2",
+				"pending": "false",
+				"error": "none",
+				"saveCalled": true
+			},
+			"log": [
+				"0.00s  load(0) called",
+				"0.30s  load(0) answered: a@1",
+				"1.56s  action: guessed a@2, now: affects rows",
+				"1.56s  action: affects rows returned, now: await save",
+				"1.56s  save(a, 2) called",
+				"3.06s  save(a, 2) answered",
+				"3.06s  load(0) called",
+				"3.36s  load(0) answered: a@2"
+			]
+		},
+		"prod-fixed": {
+			"before": {
+				"at": "1",
+				"pending": "false",
+				"error": "none",
+				"saveCalled": false
+			},
+			"during": {
+				"at": "2",
+				"pending": "true",
+				"error": "none",
+				"saveCalled": true
+			},
+			"after": {
+				"at": "2",
+				"pending": "false",
+				"error": "none",
+				"saveCalled": true
+			},
+			"log": [
+				"0.00s  load(0) called",
+				"0.30s  load(0) answered: a@1",
+				"1.55s  action: guessed a@2, now: affects rows",
+				"1.55s  action: affects rows returned, now: await save",
+				"1.55s  save(a, 2) called",
+				"3.05s  save(a, 2) answered",
+				"3.05s  load(0) called",
+				"3.35s  load(0) answered: a@2"
+			]
+		}
+	}
+}

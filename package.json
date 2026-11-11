@@ -1,0 +1,25 @@
+{
+	"name": "reactivescript-affects-repro",
+	"private": true,
+	"type": "module",
+	"description": "Repro for solidjs/reactivescript#50: `affects` on a keyed source throws INVALID_AFFECTS_TARGET",
+	"scripts": {
+		"dev": "vite",
+		"dev:fixed": "vite --mode fixed",
+		"build": "vite build --outDir dist",
+		"build:fixed": "vite build --mode fixed --outDir dist-fixed",
+		"record": "node record.mjs"
+	},
+	"dependencies": {
+		"@reactivescript/runtime": "0.1.0",
+		"@solidjs/signals": "2.0.0-rc.21",
+		"@solidjs/web": "2.0.0-rc.21",
+		"solid-js": "2.0.0-rc.21"
+	},
+	"devDependencies": {
+		"@reactivescript/compiler": "0.1.0",
+		"@solidjs/vite-plugin": "3.0.0-next.57",
+		"playwright-core": "1.65.0",
+		"vite": "8.1.3"
+	}
+}
